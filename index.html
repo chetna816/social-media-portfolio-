@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chetna — UI Designer & Frontend Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Fraunces:ital,wght@0,300;1,300;1,500&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --lime: #c8f557;
+  --coral: #ff6b6b;
+  --sky: #72d4f5;
+  --peach: #ffb347;
+  --lavender: #c4b5fd;
+  --ink: #0f0f0f;
+  --white: #fafaf7;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--white);
+  color: var(--ink);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* Nav */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 48px;
+  background: rgba(250,250,247,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+}
+.nav-logo {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 1.3rem;
+  letter-spacing: -0.02em;
+}
+.nav-logo span { display: inline-block; background: var(--lime); padding: 2px 10px; border-radius: 4px; }
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 500; font-size: 0.9rem;
+  text-decoration: none; color: var(--ink);
+  position: relative;
+}
+.nav-links a::after {
+  content: ''; position: absolute;
+  bottom: -2px; left: 0; width: 0; height: 2px;
+  background: var(--coral); transition: width 0.25s;
+}
+.nav-links a:hover::after { width: 100%; }
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 120px 48px 80px;
+  position: relative; overflow: hidden;
+}
+.blob {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); opacity: 0.35;
+  animation: float 8s ease-in-out infinite;
+  pointer-events: none;
+}
+.blob-1 { width: 500px; height: 500px; background: var(--lime); top: -100px; right: -100px; }
+.blob-2 { width: 350px; height: 350px; background: var(--sky); bottom: -80px; left: 100px; animation-delay: 3s; }
+.blob-3 { width: 280px; height: 280px; background: var(--peach); top: 40%; right: 20%; animation-delay: 5s; }
+@keyframes float {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 900px; }
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-size: 0.82rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  background: var(--ink); color: var(--lime);
+  padding: 6px 16px; border-radius: 100px; margin-bottom: 28px;
+  animation: fadeUp 0.6s ease both 0.1s;
+}
+.hero-tag::before { content: '✦'; font-size: 0.7rem; }
+
+h1 {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: clamp(3rem, 9vw, 7rem);
+  line-height: 0.95; letter-spacing: -0.03em;
+  animation: fadeUp 0.7s ease both 0.25s;
+}
+h1 .highlight { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; color: var(--coral); }
+h1 .underline-lime { position: relative; display: inline-block; }
+h1 .underline-lime::after {
+  content: ''; position: absolute;
+  bottom: 4px; left: 0; right: 0; height: 8px;
+  background: var(--lime); z-index: -1; border-radius: 2px;
+}
+
+.hero-sub {
+  margin-top: 28px; font-size: 1.05rem; line-height: 1.75;
+  max-width: 520px; color: #444;
+  animation: fadeUp 0.7s ease both 0.4s;
+}
+
+.hero-pills {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px;
+  animation: fadeUp 0.7s ease both 0.5s;
+}
+.pill {
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700; font-size: 0.82rem;
+  padding: 8px 18px; border-radius: 100px; border: 2px solid var(--ink);
+}
+.pill-lime { background: var(--lime); }
+.pill-coral { background: var(--coral); color: #fff; }
+.pill-sky { background: var(--sky); }
+
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 10px; margin-top: 40px;
+  background: var(--ink); color: var(--lime);
+  font-family: 'Cabinet Grotesk', sans-serif;
+  font-weight: 700; font-size: 0.95rem;
+  padding: 16px 30px; border-radius: 100px;
+  text-decoration: none; transition: transform 0.2s, background 0.2s;
+  animation: fadeUp 0.7s ease both 0.6s;
+}
+.hero-cta:hover { transform: scale(1.04); background: var(--coral); color: #fff; }
+.hero-cta .arrow { transition: transform 0.2s; }
+.hero-cta:hover .arrow { transform: translateX(4px); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Marquee */
+.marquee-wrap { background: var(--ink); color: var(--lime); padding: 16px 0; overflow: hidden; white-space: nowrap; }
+.marquee-track { display: inline-flex; animation: marquee 22s linear infinite; }
+.marquee-item { font-family: 'Cabinet Grotesk', sans-serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 0 28px; }
+.marquee-dot { color: var(--coral); margin-right: 28px; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+/* Sections */
+section { padding: 90px 48px; }
+.section-label { font-family: 'Cabinet Grotesk', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--coral); margin-bottom: 12px; }
+.section-title { font-family: 'Cabinet Grotesk', sans-serif; font-weight: 900; font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: -0.025em; line-height: 1.05; margin-bottom: 44px; }
+.section-title em { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; }
+
+/* About */
+.about { background: var(--ink); color: var(--white); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+.about .section-title { color: var(--white); }
+.about .section-label { color: var(--lime); }
+.about-text { font-size: 1.05rem; line-height: 1.85; color: rgba(250,250,247,0.72); }
+.about-text strong { color: var(--lime); font-weight: 400; }
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.stat-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; padding: 26px 22px; transition: background 0.3s, border-color 0.3s; }
+.stat-card:hover { background: rgba(200,245,87,0.08); border-color: var(--lime); }
+.stat-num { font-family: 'Cabinet Grotesk', sans-serif; font-weight: 900; font-size: 2.4rem; letter-spacing: -0.03em; color: var(--lime); line-height: 1; margin-bottom: 6px; }
+.stat-label { font-size: 0.82rem; color: rgba(250,250,247,0.5); line-height: 1.4; }
+
+/* Projects */
+.projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.project-card { border-radius: 20px; overflow: hidden; border: 2px solid var(--ink); background: #fff; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s; }
+.project-card:hover { transform: translateY(-8px); box-shadow: 8px 10px 0 var(--ink); }
+.project-thumb { height: 200px; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; position: relative; overflow: hidden; }
+.project-thumb-food { background: linear-gradient(135deg, #c8f557 0%, #72d4f5 100%); }
+.project-thumb-trust { background: linear-gradient(135deg, #ffb347 0%, #ff6b6b 100%); }
+.project-thumb-social { background: linear-gradient(135deg, #c4b5fd 0%, #ff6b6b 100%); }
+.project-thumb-deco { position: absolute; width: 110px; height: 110px; border-radius: 50%; background: rgba(255,255,255,0.18); bottom: -35px; right: -25px; }
+.project-body { padding: 26px; }
+.project-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+.tag { font-family: 'Cabinet Grotesk', sans-serif; font-weight: 700; font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 4px 10px; border-radius: 6px; background: var(--lime); border: 1px solid var(--ink); }
+.tag-alt { background: var(--sky); }
+.tag-alt2 { background: var(--peach); }
+.tag-alt3 { background: var(--lavender); }
+.tag-live { background: var(--coral); color: #fff; border-color: var(--coral); }
+.project-name { font-family: 'Cabinet Grotesk', sans-serif; font-weight: 900; font-size: 1.3rem; letter-spacing: -0.02em; margin-bottom: 10px; }
+.project-desc { font-size: 0.87rem; line-height: 1.7; color: #555; margin-bottom: 18px; }
+.project-link { display: inline-flex; align-items: center; gap: 6px; font-family: 'Cabinet Grotesk', sans-serif; font-weight: 700; font-size: 0.85rem; text-decoration: none; color: var(--ink); border-bottom: 2px solid var(--lime); padding-bottom: 2px; transition: color 0.2s, border-color 0.2s; }
+.project-link:hover { color: var(--coral); border-color: var(--coral); }
+
+/* Skills */
+.skills-bg { background: #f4f4ee; }
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.skill-block { background: var(--white); border: 2px solid var(--ink); border-radius: 16px; padding: 30px 26px; transition: transform 0.25s, background 0.25s; }
+.skill-block:hover { transform: translate(-4px, -4px); }
+.skill-block:nth-child(1):hover { background: var(--lime); }
+.skill-block:nth-child(2):hover { background: var(--sky); }
+.skill-block:nth-child(3):hover { background: var(--peach); }
+.skill-icon { font-size: 2rem; margin-bottom: 12px; }
+.skill-name { font-family: 'Cabinet Grotesk', sans-serif; font-weight: 900; font-size: 1.05rem; margin-bottom: 12px; }
+.skill-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.skill-list li { font-size: 0.84rem; color: #555; display: flex; align-items: center; gap: 8px; }
+.skill-list li::before { content: '→'; color: var(--coral); }
+
+/* Contact */
+.contact { text-align: center; }
+.contact-box { max-width: 580px; margin: 0 auto; background: var(--ink); color: var(--white); border-radius: 24px; padding: 60px 48px; position: relative; overflow: hidden; }
+.contact-box::before { content: ''; position: absolute; top: -60px; right: -60px; width: 200px; height: 200px; background: var(--coral); border-radius: 50%; opacity: 0.15; }
+.contact-box::after { content: ''; position: absolute; bottom: -40px; left: -40px; width: 150px; height: 150px; background: var(--lime); border-radius: 50%; opacity: 0.12; }
+.contact-box h2 { font-family: 'Cabinet Grotesk', sans-serif; font-weight: 900; font-size: 2.2rem; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 12px; position: relative; z-index: 1; }
+.contact-box p { color: rgba(250,250,247,0.6); margin-bottom: 32px; position: relative; z-index: 1; }
+.contact-btn { display: inline-block; background: var(--lime); color: var(--ink); font-family: 'Cabinet Grotesk', sans-serif; font-weight: 900; font-size: 1rem; padding: 15px 36px; border-radius: 100px; text-decoration: none; transition: transform 0.2s, background 0.2s; position: relative; z-index: 1; }
+.contact-btn:hover { transform: scale(1.05); background: var(--coral); color: #fff; }
+
+footer { background: var(--ink); color: rgba(250,250,247,0.4); text-align: center; padding: 22px 48px; font-size: 0.82rem; font-family: 'Cabinet Grotesk', sans-serif; }
+footer span { color: var(--lime); }
+
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  .nav-links { display: none; }
+  section { padding: 60px 20px; }
+  .hero { padding: 100px 20px 60px; }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .contact-box { padding: 40px 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo"><span>C.</span> Chetna</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Available for opportunities</div>
+    <h1>Hi, I'm <span class="underline-lime">Chetna</span> —<br>I build, design and <span class="highlight">innovate.</span></h1>
+    <p class="hero-sub">2nd year BCA student passionate about UI design, frontend engineering, and social media. I believe great digital experiences should feel <strong>alive</strong> and look <strong>effortlessly stunning</strong>.</p>
+    <div class="hero-pills">
+      <span class="pill pill-lime">UI Design</span>
+      <span class="pill pill-coral">Frontend Dev</span>
+      <span class="pill pill-sky">Social Media</span>
+    </div>
+    <a href="#projects" class="hero-cta">See my work <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- Marquee -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">UI Design <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Frontend Engineering <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Social Media <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Figma <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">HTML & CSS <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">iOS Design <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Aesthetic Design <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">BCA Student <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">UI Design <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Frontend Engineering <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Social Media <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Figma <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">HTML & CSS <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">iOS Design <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">Aesthetic Design <span class="marquee-dot">✦</span></span>
+    <span class="marquee-item">BCA Student <span class="marquee-dot">✦</span></span>
+  </div>
+</div>
+
+<!-- About -->
+<section class="about" id="about">
+  <div class="about-grid">
+    <div>
+      <p class="section-label">About Me</p>
+      <h2 class="section-title">Design is how I <em>think.</em></h2>
+      <p class="about-text">
+        I'm Chetna, a 2nd year BCA student who loves making things look <strong>aesthetic</strong>. Whether it's a mobile app UI, a full website, or a social media presence — I care about every pixel.<br><br>
+        I've built a <strong>fully live website</strong> for a charity trust during my internship and designed <strong>FoodGuard</strong> — an iOS app connecting food donors with those in need.<br><br>
+        Currently exploring the sweet spot where creativity meets code.
+      </p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">2+</div>
+        <div class="stat-label">Real-world projects shipped</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Internship completed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">3</div>
+        <div class="stat-label">Specialisations</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Ideas in the pipeline</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+  <p class="section-label">Selected Work</p>
+  <h2 class="section-title">Things I've <em>built.</em></h2>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-thumb project-thumb-food">
+        🍱
+        <div class="project-thumb-deco"></div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag">iOS App</span>
+          <span class="tag tag-alt">UI Design</span>
+          <span class="tag tag-alt3">Social Impact</span>
+        </div>
+        <h3 class="project-name">FoodGuard — iOS App</h3>
+        <p class="project-desc">A mobile app that connects food donors with those in need reducing waste while fighting hunger. Designed the full iOS UI with a warm, intuitive experience that makes donating food feel as easy as a tap.</p>
+        <a href="foodguard-case-study-2.html" class="project-link">View Case Study →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb project-thumb-trust">
+        🤝
+        <div class="project-thumb-deco"></div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag tag-alt2">Frontend Dev</span>
+          <span class="tag">Internship</span>
+          <span class="tag tag-live">Live ↗</span>
+        </div>
+        <h3 class="project-name">NGO Trust Website</h3>
+        <p class="project-desc">Built a fully functional website for a charity trust during my internship — currently live and running on the server. Handled end-to-end: design, frontend build, and deployment. A real product for a real cause.</p>
+        <a href="https://jaswantisudcharitabletrust.netlify.app" class="project-link">Visit Live Site →</a>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-thumb project-thumb-social">
+        ✨
+        <div class="project-thumb-deco"></div>
+      </div>
+      <div class="project-body">
+        <div class="project-tags">
+          <span class="tag tag-alt3">Social Media Management </span>
+          <span class="tag">Content Design</span>
+        </div>
+        <h3 class="project-name">Social Media Management</h3>
+        <p class="project-desc">Crafting content, brand identity, and social media strategy — where good design meets good storytelling. Built cohesive, aesthetic-forward content across platforms.</p>
+        <a href="#" class="project-link">View Work →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Skills -->
+<section class="skills-bg" id="skills">
+  <p class="section-label">What I Do</p>
+  <h2 class="section-title">My <em>toolkit.</em></h2>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <div class="skill-icon">🎨</div>
+      <div class="skill-name">UI Design</div>
+      <ul class="skill-list">
+        <li>Figma & Prototyping</li>
+        <li>Design Systems</li>
+        <li>User Flows & Wireframes</li>
+        <li>Visual & Aesthetic Design</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <div class="skill-icon">💻</div>
+      <div class="skill-name">Frontend Dev</div>
+      <ul class="skill-list">
+        <li>HTML, CSS, JavaScript</li>
+        <li>Responsive Design</li>
+        <li>Web Deployment</li>
+        <li>iOS App UI</li>
+      </ul>
+    </div>
+    <div class="skill-block">
+      <div class="skill-icon">📲</div>
+      <div class="skill-name">Social Media Management</div>
+      <ul class="skill-list">
+        <li>Content Design</li>
+        <li>Video Editing</li>
+        <li>Visual Storytelling</li>
+        <li>Platform Strategy</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="contact-box">
+    <h2>Let's make something ✦ beautiful.</h2>
+    <p>Open to internships, freelance projects, collabs, or just a good chat about design. Let's connect!</p>
+    <a href="mailto:chetnamahendra2@gmail.com" class="contact-btn">Say Hello →</a>
+  </div>
+</section>
+
+<footer>
+  Designed & built with love by <span>Chetna</span> · 2026
+</footer>
+
+<script>
+  // Subtle tilt on project cards
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+</script>
+</body>
+</html>
